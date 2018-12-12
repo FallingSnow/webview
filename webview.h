@@ -327,6 +327,7 @@ WEBVIEW_API int webview_init(struct webview *w) {
   WebKitSettings *settings =
       webkit_web_view_get_settings(WEBKIT_WEB_VIEW(w->priv.webview));
   webkit_settings_set_allow_file_access_from_file_urls(settings, true);
+  webkit_settings_set_allow_universal_access_from_file_urls(settings, true);
   if (w->debug) {
     webkit_settings_set_enable_write_console_messages_to_stdout(settings, true);
     webkit_settings_set_enable_developer_extras(settings, true);
