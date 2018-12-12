@@ -324,9 +324,10 @@ WEBVIEW_API int webview_init(struct webview *w) {
                    G_CALLBACK(webview_load_changed_cb), w);
   gtk_container_add(GTK_CONTAINER(w->priv.scroller), w->priv.webview);
 
+  WebKitSettings *settings =
+      webkit_web_view_get_settings(WEBKIT_WEB_VIEW(w->priv.webview));
+  webkit_settings_set_allow_file_access_from_file_urls(settings, true);
   if (w->debug) {
-    WebKitSettings *settings =
-        webkit_web_view_get_settings(WEBKIT_WEB_VIEW(w->priv.webview));
     webkit_settings_set_enable_write_console_messages_to_stdout(settings, true);
     webkit_settings_set_enable_developer_extras(settings, true);
   } else {
